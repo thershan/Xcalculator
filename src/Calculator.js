@@ -7,8 +7,14 @@ const Calculator = () => {
 
   const handleButtonClick = (value) => {
     if (value === '=') {
+      if (input.trim() === '') {
+        setResult('Error');
+        return;
+      }
+
       try {
-        setResult(eval(input)); // Note: eval() can be dangerous in real applications
+        const evaluatedResult = eval(input); // Note: eval() can be dangerous in real applications
+        setResult(evaluatedResult === Infinity ? 'Infinity' : evaluatedResult);
       } catch {
         setResult('Error');
       }
